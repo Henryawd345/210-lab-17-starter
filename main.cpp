@@ -15,6 +15,18 @@ Node* push_front(Node* head, float v){
     newVal->next  = head;
     return newVal;   // new head
 }
+
+void clear(Node*& head) {
+    Node* current = head;
+    while (current)
+    {
+        Node* n = current ->next;
+        delete current;
+        current = n; 
+    }
+    head = nullptr;
+}
+
 void output(Node *);
 
 int main() {
@@ -90,6 +102,8 @@ int main() {
     }
     head = nullptr;
     output(head);*/
+    clear(head);
+    output(head); 
 
     return 0;
 }
