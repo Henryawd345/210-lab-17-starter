@@ -50,13 +50,16 @@ Node* delete_at(Node* head, int indx){
 
 Node* inserting_after(Node* head, int indx, float v){
     if (indx < 1 || !head) return head;  
+
     Node* curr = head;
     for (int i = 1; i < indx && curr; ++i) 
     curr = curr->next; 
-    if (!curr) return head;            
+    if (!curr) return head;  
+
     Node* n = new Node;
     n->value = v;
     n->next  = curr->next;
+    curr->next = n;
     return head;
 }
 
@@ -100,7 +103,11 @@ int main() {
     head = delete_at(head, entry);  //delete the none
     output(head);
 
-
+    cout << "After which node to insert 10000?\n";
+    output(head);
+    cout << "Choice --> "; cin >> entry;
+    head = inserting_after(head, entry, 10000);
+    output(head);
 
 /*
 
