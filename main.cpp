@@ -9,6 +9,9 @@ struct Node {
 };
 
 
+
+
+
 Node* push_front(Node* head, float v){
     Node* newVal = new Node;
     newVal->value = v;
