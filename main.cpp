@@ -48,28 +48,17 @@ Node* delete_at(Node* head, int indx){
     
 }
 
-Node* inserting_after(Node* head, int indx){
-    if (indx < 1 || !head) return head;        
-    if (indx == 1) {     
-        Node* nxt = head->next;
-        delete head;
-        return nxt;
-    }
-
-    Node* prev = head;
-    Node* curr = head->next;
-    for (int i = 2; i < indx && curr; i++) {
-        prev = curr;
-        curr = curr->next;
-    }
-    if (!curr) return head; 
-
-    prev->next = curr->next; 
-    delete curr;
+Node* inserting_after(Node* head, int indx, float v){
+    if (indx < 1 || !head) return head;  
+    Node* curr = head;
+    for (int i = 1; i < indx && curr; ++i) 
+    curr = curr->next; 
+    if (!curr) return head;            
+    Node* n = new Node;
+    n->value = v;
+    n->next  = curr->next;
     return head;
-    
 }
-
 
 void clear(Node*& head) {
     Node* current = head;
@@ -108,7 +97,7 @@ int main() {
     cout << "Choice --> ";
     cin >> entry;
 
-    head = delete_at(head, entry);  // ← do the deletion
+    head = delete_at(head, entry);  //delete the none
     output(head);
 
 
