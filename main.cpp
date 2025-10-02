@@ -48,6 +48,28 @@ Node* delete_at(Node* head, int indx){
     
 }
 
+Node* inserting_after(Node* head, int indx){
+    if (indx < 1 || !head) return head;        
+    if (indx == 1) {     
+        Node* nxt = head->next;
+        delete head;
+        return nxt;
+    }
+
+    Node* prev = head;
+    Node* curr = head->next;
+    for (int i = 2; i < indx && curr; i++) {
+        prev = curr;
+        curr = curr->next;
+    }
+    if (!curr) return head; 
+
+    prev->next = curr->next; 
+    delete curr;
+    return head;
+    
+}
+
 
 void clear(Node*& head) {
     Node* current = head;
