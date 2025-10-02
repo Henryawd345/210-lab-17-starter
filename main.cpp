@@ -21,10 +21,31 @@ Node* push_back(Node* head, float v){
     newVal->next  = nullptr;
     if (!head) return newVal; 
 
-    Node* cur = head;
-    while (cur->next) cur = cur->next;
-    cur->next = newVal;
+    Node* curr = head;
+    while (curr->next) curr = curr->next;
+    curr->next = newVal;
     return head;
+}
+Node* delete_at(Node* head, int indx){
+    if (indx < 1 || !head) return head;        
+    if (indx == 1) {     
+        Node* nxt = head->next;
+        delete head;
+        return nxt;
+    }
+
+    Node* prev = head;
+    Node* curr = head->next;
+    for (int i = 2; i < indx && curr; i++) {
+        prev = curr;
+        curr = curr->next;
+    }
+    if (!curr) return head; 
+
+    prev->next = curr->next; 
+    delete curr;
+    return head;
+    
 }
 
 
@@ -48,17 +69,20 @@ int main() {
     // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
         int tmp_val = rand() % 100;
-        head = push_front(head, tmp_val);
+        head = push_front(head, tmp_val);//adding node at the beginning
     }
     output(head);
-    clear(head);
 
-    for (int i = 0; i < SIZE; i++) {
+    for (int i = 0; i < 1; i++) {
         int tmp_val = rand() % 100;
-        head = push_back(head, tmp_val); 
+        head = push_back(head, tmp_val);//adding node at the tail
+        
     }
-    head = push_back(head, 42); 
-    output(head);
+    output(head); 
+
+    
+
+
 /*
     // deleting a node
     Node * current = head;
